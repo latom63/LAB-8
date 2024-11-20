@@ -52,3 +52,38 @@ add_student(
         "Фізика": 80
     }
 )
+
+# --------- Друга частина завдання --- Микитенка Мирослава ----
+
+# Оцінка структури словника:
+# Словник загалом є структурованим і дозволяє зручно зберігати дані. 
+# Немає необхідності змінювати структуру, оскільки всі необхідні дані присутні.
+
+# Функція для обчислення середньої оцінки студента
+def calculate_average(subjects):
+    """
+    Обчислює середню оцінку за всіма предметами.
+    :param subjects: Словник із предметами та оцінками.
+    :return: Середня оцінка.
+    """
+    return sum(subjects.values()) / len(subjects)
+
+# Функція для сортування студентів за середньою оцінкою
+def sort_students_by_average(students_dict):
+    """
+    Сортує студентів за середньою оцінкою у порядку спадання.
+    :param students_dict: Словник із студентами.
+    """
+    students_dict["students"].sort(
+        key=lambda student: calculate_average(student["subjects"]),
+        reverse=True
+    )
+
+# Виклик функції сортування
+sort_students_by_average(students_dict)
+
+# Виведення результатів після сортування
+print("Список студентів після сортування за середньою оцінкою:")
+for student in students_dict["students"]:
+    avg = calculate_average(student["subjects"])
+    print(f"{student['name']} - Середня оцінка: {avg:.2f}")
